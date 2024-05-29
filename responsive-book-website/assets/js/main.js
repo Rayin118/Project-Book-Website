@@ -22,23 +22,50 @@ if(searchClose){
 /*=============== LOGIN ===============*/
 const loginButton = document.getElementById('login-button'),
       loginClose = document.getElementById('login-close'),
-      loginContent = document.getElementById('login-content')
+      loginContent = document.getElementById('login-content'),
+      loginForm = document.getElementById('login-form'),
+      loginButton2 = document.getElementById('login-button2'),
+      // loginClose2 = document.getElementById('login-button'), 
+      successBanner = document.getElementById('success-banner');
+      
 
 /*===== LOGIN SHOW =====*/
 /* Validate if constant exists */
-if(loginButton){
-  loginButton.addEventListener('click', () =>{
-    loginContent.classList.add('show-login')
-  })
+if (loginButton) {
+    loginButton.addEventListener('click', () => {
+        loginContent.classList.add('show-login');
+    });
 }
-  
+
+if (loginButton2) {
+  loginButton2.addEventListener('click', () => {
+      loginContent.classList.add('show-login');
+  });
+}
+
 /*===== LOGIN HIDDEN =====*/
 /* Validate if constant exists */
-if(loginClose){
-  loginClose.addEventListener('click', () =>{
-    loginContent.classList.remove('show-login')
-  })
+if (loginClose) {
+    loginClose.addEventListener('click', () => {
+        loginContent.classList.remove('show-login');
+    });
 }
+
+/*===== LOGIN SUBMIT =====*/
+if (loginForm) {
+    loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();  // Prevent default form submission
+
+        // Display success banner
+        successBanner.classList.remove('hidden');
+
+        // Refresh page after a short delay
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);  // Adjust the delay as needed
+    });
+}
+
 
 /*=============== ADD SHADOW HEADER ===============*/
 const shadowHeader = () =>{
@@ -194,3 +221,49 @@ sr.reveal(`.home__images`, {delay: 600})
 sr.reveal(`.services__card`, {interval: 100})
 sr.reveal(`.discount__data`, {origin: 'left'})
 sr.reveal(`.discount__images`, {origin: 'right'})
+
+// /*=============== event listener for heart button ===============*/
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   // Heart button toggle
+//   const heartButtons = document.querySelectorAll('.heart-button');
+
+//   heartButtons.forEach(button => {
+//       button.addEventListener('click', function () {
+//           const icon = this.querySelector('i');
+//           if (icon.classList.contains('ri-heart-3-line')) {
+//               icon.classList.remove('ri-heart-3-line');
+//               icon.classList.add('ri-heart-fill');
+//           } else {
+//               icon.classList.remove('ri-heart-fill');
+//               icon.classList.add('ri-heart-3-line');
+//           }
+//       });
+//   });
+
+  // Eye button zoom
+  const zoomButtons = document.querySelectorAll('.zoom-button');
+  const modal = document.createElement('div');
+  modal.classList.add('modal');
+  document.body.appendChild(modal);
+
+  zoomButtons.forEach(button => {
+      button.addEventListener('click', function () {
+          const imgSrc = this.closest('.featured__card').querySelector('.featured__img').src;
+          const modalImg = document.createElement('img');
+          modalImg.src = imgSrc;
+          modal.innerHTML = ''; // 清空之前的内容
+          modal.appendChild(modalImg);
+          modal.classList.add('active');
+      });
+  });
+
+  // Close modal on click outside the image
+  modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+          modal.classList.remove('active');
+      }
+  });
+// });
+
+

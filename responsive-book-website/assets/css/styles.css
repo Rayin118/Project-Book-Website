@@ -397,6 +397,22 @@ body.dark-theme {
   top: 0;
 }
 
+.hidden {
+  display: none;
+}
+
+.success-banner {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: green;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  z-index: 1000;
+}
+
 /*=============== HOME ===============*/
 .home__swiper {
   margin: initial;
@@ -454,6 +470,10 @@ body.dark-theme {
   box-shadow: 0 4px 32px hsla(230, 72%, 32%, .4);
 }
 
+.heart-button i.ri-heart-fill {
+  color: red; /* 調整深色愛心的顏色 */
+}
+
 /*=============== SERVICES ===============*/
 .services__container {
   row-gap: 3rem;
@@ -491,6 +511,30 @@ body.dark-theme {
   margin: 0 auto .75rem;
 }
 
+.modal {
+  display: none; /* 初始隐藏 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* 半透明背景 */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 保证在最上层 */
+}
+
+.modal img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.modal.active {
+  display: flex; /* 显示并居中对齐 */
+}
+
+
 .featured__title {
   font-size: var(--h2-font-size);
   margin-bottom: .5rem;
@@ -504,7 +548,7 @@ body.dark-theme {
   margin-bottom: 1.25rem;
 }
 
-.featured__discount {
+.author_block {
   color: var(--title-color);
 }
 
@@ -556,38 +600,38 @@ body.dark-theme {
   transition: border .4s, background-color .4s;
 }
 
-/*=============== DISCOUNT ===============*/
-.discount__container {
+/*=============== Invite ===============*/
+.invite__container {
   row-gap: 3.5rem;
 }
 
-.discount__data {
+.invite__data {
   text-align: center;
 }
 
-.discount__title {
+.invite__title {
   margin-bottom: 1rem;
 }
 
-.discount__description {
+.invite__description {
   margin-bottom: 2rem;
 }
 
-.discount__images {
+.invite__images {
   display: flex;
   justify-content: center;
 }
 
-.discount__img-1, 
-.discount__img-2 {
+.invite__img-1, 
+.invite__img-2 {
   width: 170px;
 }
 
-.discount__img-1 {
+.invite__img-1 {
   transform: translateX(1rem) rotate(-10deg);
 }
 
-.discount__img-2 {
+.invite__img-2 {
   transform: translateX(-1rem) rotate(10deg);
 }
 
@@ -616,21 +660,21 @@ body.dark-theme {
   margin-bottom: .5rem;
 }
 
-.new__prices {
+.new_book {
   display: flex;
   align-items: center;
   column-gap: .75rem;
   margin-bottom: .75rem;
 }
 
-.new__discount {
+.new__author {
   color: var(--title-color);
 }
 
-.new__price {
+/* .new__price {
   font-size: var(--small-font-size);
   text-decoration: line-through;
-}
+} */
 
 .new__stars {
   color: var(--first-color);

@@ -23,7 +23,7 @@
       <header class="header" id="header">
          <nav class="nav container">
             <a href="#" class="nav__logo">
-               <i class="ri-book-3-line"></i> E-Book
+               <i class="ri-book-3-line"></i> PBook Review
             </a>
             
             <div class="nav__menu">
@@ -43,9 +43,9 @@
                   </li>
 
                   <li class="nav__item">
-                     <a href="#discount" class="nav__link">
+                     <a href="#invite" class="nav__link">
                         <i class="ri-price-tag-3-line"></i>
-                        <span>Discount</span>
+                        <span>Vision</span>
                      </a>
                   </li>
 
@@ -57,10 +57,10 @@
                   </li>
 
                   <li class="nav__item">
-                     <a href="#testimonial" class="nav__link">
+                     <!-- <a href="#testimonial" class="nav__link">
                         <i class="ri-message-3-line"></i>
                         <span>Testimonial</span>
-                     </a>
+                     </a> -->
                   </li>
                </ul>
             </div>
@@ -90,36 +90,41 @@
 
       <!--==================== LOGIN ====================-->
       <div class="login grid" id="login-content">
-         <form action="" class="login__form grid">
-            <h3 class="login__title">Log In</h3>
-            
-            <div class="login__group grid">
-               <div>
-                  <label for="login-email" class="login__label">Email</label>
-                  <input type="email" placeholder="Write your email" id="login-email" class="login__input">
-               </div>
-               
-               <div>
-                  <label for="login-pass" class="login__label">Password</label>
-                  <input type="password" placeholder="Enter your password" id="login-pass" class="login__input">
-               </div>
-            </div>
-
-            <div>
-               <span class="login__signup">
-                  You do not have an account? <a href="#">Sign up</a>
-               </span>
-   
-               <a href="#" class="login__forgot">
-                  You forgot your password
-               </a>
-   
-               <button type="submit" class="login__button button">Log In</button>
-            </div>
+         <form action="" class="login__form grid" id="login-form">
+             <h3 class="login__title">Log In</h3>
+           
+             <div class="login__group grid">
+                 <div>
+                     <label for="login-email" class="login__label">Email</label>
+                     <input type="email" placeholder="Write your email" id="login-email" class="login__input" required>
+                 </div>
+                 
+                 <div>
+                     <label for="login-pass" class="login__label">Password</label>
+                     <input type="password" placeholder="Enter your password" id="login-pass" class="login__input" required>
+                 </div>
+             </div>
+     
+             <div>
+                 <span class="login__signup">
+                     You do not have an account? <a href="#">Sign up</a>
+                 </span>
+     
+                 <a href="#" class="login__forgot">
+                     You forgot your password
+                 </a>
+     
+                 <button type="submit" class="login__button button">Log In</button>
+             </div>
          </form>
-
+     
          <i class="ri-close-line login__close" id="login-close"></i>
-      </div>
+     </div>
+     
+     <!-- Success Banner -->
+     <div id="success-banner" class="success-banner hidden">
+         登入成功
+     </div>
 
       <!--==================== MAIN ====================-->
       <main class="main">
@@ -129,17 +134,16 @@
                <div class="home__data">
                   <h1 class="home__title">
                      Browse & <br>
-                     Select E-Books
+                     Search PBooks
                   </h1>
 
                   <p class="home__description">
-                     Find the best e-books from your favorite 
+                     Find the best picture books from your favorite 
                      writers, explore hundreds of books with all 
-                     possible categories, take advantage of the 
-                     50% discount and much more.                     
+                     possible categories                     
                   </p>
 
-                  <a href="#" class="button">Explore Now</a>
+                  <a href="#" class="button"  id="login-button2">Explore Now</a>
                </div>
 
                <div class="home__images">
@@ -170,15 +174,15 @@
          <section class="services section">
             <div class="services__container container grid">
                <article class="services__card">
-                  <i class="ri-truck-line"></i>
-                  <h3 class="services__title">Free Shipping</h3>
-                  <p class="services__description">Order More Than $100</p>
+                  <i class="ri-team-line"></i>
+                  <h3 class="services__title">Comment</h3>
+                  <p class="services__description">Watch comments from others</p>
                </article>
 
                <article class="services__card">
-                  <i class="ri-lock-2-line"></i>
-                  <h3 class="services__title">Secure Payment</h3>
-                  <p class="services__description">100% Secure Payment</p>
+                  <i class="ri-contacts-book-2-fill"></i>
+                  <h3 class="services__title">Personalize</h3>
+                  <p class="services__description">Create your personalize picture book list</p>
                </article>
 
                <article class="services__card">
@@ -198,183 +202,140 @@
             <div class="featured__container container">
                <div class="featured__swiper swiper">
                   <div class="swiper-wrapper">
-                     <article class="featured__card swiper-slide">
-                        <img src="assets/img/book-1.png" alt="image" class="featured__img">
+                        <article class="featured__card swiper-slide">
+                           <img src="assets/img/book-1.png" alt="image" class="featured__img">
+                           <h2 class="featured__title">Featured Book</h2>
+                           <div class="featured__prices">
+                              <span class="author_block">author name</span>
+                           
+                           </div>
+                           <button class="button">See more</button>
+                           <div class="featured__actions">
+                              <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                              <button class="zoom-button"><i class="ri-eye-line"></i></button>
+                            
+                           </div>
+                        </article>
 
-                        <h2 class="featured__title">Featured Book</h2>
-                        <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
-                        </div>
-
-                        <button class="button">Add To Cart</button>
-
-                        <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
-                        </div>
-                     </article>
-
-                     <article class="featured__card swiper-slide">
-                        <img src="assets/img/book-2.png" alt="image" class="featured__img">
-
-                        <h2 class="featured__title">Featured Book</h2>
-                        <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
-                        </div>
-
-                        <button class="button">Add To Cart</button>
-
-                        <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
-                        </div>
-                     </article>
+                        <article class="featured__card swiper-slide">
+                           <img src="assets/img/book-2.png" alt="image" class="featured__img">
+                           <h2 class="featured__title">Featured Book</h2>
+                           <div class="featured__prices">
+                              <span class="author_block">author name</span>
+                           
+                           </div>
+                           <button class="button">See more</button>
+                           <div class="featured__actions">
+                              <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                              <button class="zoom-button"><i class="ri-eye-line"></i></button>
+                           
+                           </div>
+                        </article>
 
                      <article class="featured__card swiper-slide">
-                        <img src="assets/img/book-3.png" alt="image" class="featured__img">
+                           <img src="assets/img/book-3.png" alt="image" class="featured__img">
+                           <h2 class="featured__title">Featured Book</h2>
+                           <div class="featured__prices">
+                              <span class="author_block">author name</span>
+                           
+                           </div>
+                           <button class="button">See more</button>
+                           <div class="featured__actions">
+                              <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                              <button class="zoom-button"><i class="ri-eye-line"></i></button>
+                           
+                           </div>
+                        </article>
 
-                        <h2 class="featured__title">Featured Book</h2>
-                        <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
-                        </div>
+                        <article class="featured__card swiper-slide">
+                           <img src="assets/img/book-4.png" alt="image" class="featured__img">
+                           <h2 class="featured__title">Featured Book</h2>
+                           <div class="featured__prices">
+                              <span class="author_block">author name</span>
 
-                        <button class="button">Add To Cart</button>
-
-                        <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
-                        </div>
+                           </div>
+                           <button class="button">See more</button>
+                           <div class="featured__actions">
+                              <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                              <button class="zoom-button"><i class="ri-eye-line"></i></button>
+                           </div>
                      </article>
-
-                     <article class="featured__card swiper-slide">
-                        <img src="assets/img/book-4.png" alt="image" class="featured__img">
-
-                        <h2 class="featured__title">Featured Book</h2>
-                        <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
-                        </div>
-
-                        <button class="button">Add To Cart</button>
-
-                        <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
-                        </div>
-                     </article>
-                     
+                              
                      <article class="featured__card swiper-slide">
                         <img src="assets/img/book-5.png" alt="image" class="featured__img">
-
                         <h2 class="featured__title">Featured Book</h2>
                         <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
+                           <span class="author_block">author name</span>
                         </div>
-
-                        <button class="button">Add To Cart</button>
-
+                        <button class="button">See more</button>
                         <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
+                           <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                           <button class="zoom-button"><i class="ri-eye-line"></i></button>
                         </div>
                      </article>
 
                      <article class="featured__card swiper-slide">
                         <img src="assets/img/book-6.png" alt="image" class="featured__img">
-
                         <h2 class="featured__title">Featured Book</h2>
                         <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
+                           <span class="author_block">author name</span>
                         </div>
-
-                        <button class="button">Add To Cart</button>
-
+                        <button class="button">See more</button>
                         <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
+                           <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                           <button class="zoom-button"><i class="ri-eye-line"></i></button>
                         </div>
                      </article>
 
                      <article class="featured__card swiper-slide">
                         <img src="assets/img/book-7.png" alt="image" class="featured__img">
-
                         <h2 class="featured__title">Featured Book</h2>
                         <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
+                           <span class="author_block">author name</span>
                         </div>
-
-                        <button class="button">Add To Cart</button>
-
+                        <button class="button">See more</button>
                         <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
+                           <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                           <button class="zoom-button"><i class="ri-eye-line"></i></button>
                         </div>
                      </article>
 
                      <article class="featured__card swiper-slide">
                         <img src="assets/img/book-8.png" alt="image" class="featured__img">
-
                         <h2 class="featured__title">Featured Book</h2>
                         <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
+                           <span class="author_block">author name</span>
                         </div>
-
-                        <button class="button">Add To Cart</button>
-
+                        <button class="button">See more</button>
                         <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
+                           <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                           <button class="zoom-button"><i class="ri-eye-line"></i></button>
                         </div>
                      </article>
 
                      <article class="featured__card swiper-slide">
                         <img src="assets/img/book-9.png" alt="image" class="featured__img">
-
                         <h2 class="featured__title">Featured Book</h2>
                         <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
+                           <span class="author_block">author name</span>
                         </div>
-
-                        <button class="button">Add To Cart</button>
-
+                        <button class="button">See more</button>
                         <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
+                           <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                           <button class="zoom-button"><i class="ri-eye-line"></i></button>
                         </div>
                      </article>
 
                      <article class="featured__card swiper-slide">
                         <img src="assets/img/book-10.png" alt="image" class="featured__img">
-
                         <h2 class="featured__title">Featured Book</h2>
                         <div class="featured__prices">
-                           <span class="featured__discount">$11.99</span>
-                           <span class="featured__price">$19.99</span>
+                           <span class="author_block">author name</span>
                         </div>
-
-                        <button class="button">Add To Cart</button>
-
+                        <button class="button">See more</button>
                         <div class="featured__actions">
-                           <button><i class="ri-search-line"></i></button>
-                           <button><i class="ri-heart-3-line"></i></button>
-                           <button><i class="ri-eye-line"></i></button>
+                           <button class="heart-button"><i class="ri-heart-3-line"></i></button>
+                           <button class="zoom-button"><i class="ri-eye-line"></i></button>
                         </div>
                      </article>
                   </div>
@@ -390,30 +351,29 @@
             </div>
          </section>
 
-         <!--==================== DISCOUNT ====================-->
-         <section class="discount section" id="discount">
-            <div class="discount__container container grid">
-               <div class="discount__data">
-                  <h2 class="discount__title section__title">
-                     Up To 50% Discount 
-                  </h2>
-
-                  <p class="discount__description">
-                     Take advantage of the discount days we 
-                     have for you, buy books from your favorite 
-                     writers, the more you buy, the more 
-                     discounts we have for you.
-                  </p>
-
-                  <a href="#" class="button">Shop Now</a>
-               </div>
-
-               <div class="discount__images">
-                  <img src="assets/img/discount-book-1.png" alt="" class="discount__img-1">
-                  <img src="assets/img/discount-book-2.png" alt="" class="discount__img-2">
-               </div>
+         <!--==================== invite ====================-->
+         <section class="invite section" id="invite">
+            <div class="invite__container container grid">
+                <div class="invite__data">
+                    <h2 class="invite__title section__title">
+                        Let's achieve the vision together.
+                    </h2>
+        
+                    <p class="invite__description">
+                        This is a website where you can view various picture book reviews.
+                        We sincerely invite you to register and become a part of our community.
+                    </p>
+        
+                    <a href="https://buymeacoffee.com//" class="button">Donate us</a>
+                </div>
+        
+                <div class="invite__images">
+                    <img src="assets/img/discount-book-1.png" alt="" class="invite__img-1">
+                    <img src="assets/img/discount-book-2.png" alt="" class="invite__img-2">
+                </div>
             </div>
-         </section>
+        </section>
+        
 
          <!--==================== NEW BOOKS ====================-->
          <section class="new section" id="new">
@@ -429,18 +389,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars"> -->
+                              <!-- <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div>
+                              <i class="ri-star-half-fill"></i> -->
+                           <!-- </div> -->
                         </div>
                      </a>
 
@@ -449,18 +409,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -469,18 +429,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -489,18 +449,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -509,18 +469,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -529,18 +489,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
-   
+<!--    
                            <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -549,18 +509,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -569,18 +529,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
-   
+<!--    
                            <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -589,18 +549,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -609,18 +569,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
                   </div>
@@ -633,18 +593,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -653,18 +613,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -673,18 +633,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -693,18 +653,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -713,18 +673,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -733,18 +693,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -753,18 +713,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -773,18 +733,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -793,18 +753,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
 
@@ -813,18 +773,18 @@
 
                         <div>
                            <h2 class="new__title">New Book</h2>
-                           <div class="new__prices">
-                              <span class="new__discount">$7.99</span>
-                              <span class="new__price">$14.99</span>
+                           <div class="new__book">
+                              <span class="new__author">author_name</span>
+                              <!-- <span class="new__price">$14.99</span> -->
                            </div>
    
-                           <div class="new__stars">
+                           <!-- <div class="new__stars">
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-fill"></i>
                               <i class="ri-star-half-fill"></i>
-                           </div>
+                           </div> -->
                         </div>
                      </a>
                   </div>
@@ -852,7 +812,7 @@
          </section>
 
          <!--==================== TESTIMONIAL ====================-->
-         <section class="testimonial section" id="testimonial">
+         <!-- <section class="testimonial section" id="testimonial">
             <h2 class="section__title">
                Customer Opinions
             </h2>
@@ -883,8 +843,8 @@
 
                         <h2 class="testimonial__title">Rial Loz</h2>
                         <p class="testimonial__description">
-                           The best website to buy books, the purchase 
-                           is very easy to make and has great discounts.
+                           The best website to check out the picture books, thus my purchase 
+                           decison become very easy to make.
                         </p>
 
                         <div class="testimonial__stars">
@@ -901,8 +861,8 @@
 
                         <h2 class="testimonial__title">Rial Loz</h2>
                         <p class="testimonial__description">
-                           The best website to buy books, the purchase 
-                           is very easy to make and has great discounts.
+                           The best website to check out the picture books, thus my purchase 
+                           decison become very easy to make.
                         </p>
 
                         <div class="testimonial__stars">
@@ -919,8 +879,8 @@
 
                         <h2 class="testimonial__title">Rial Loz</h2>
                         <p class="testimonial__description">
-                           The best website to buy books, the purchase 
-                           is very easy to make and has great discounts.
+                           The best website to check out the picture books, thus my purchase 
+                           decison become very easy to make.
                         </p>
 
                         <div class="testimonial__stars">
@@ -935,19 +895,19 @@
                </div>
             </div>
          </section>
-      </main>
+      </main> -->
 
       <!--==================== FOOTER ====================-->
       <footer class="footer">
          <div class="footer__container container grid">
             <div>
                <a href="#" class="footer__logo">
-                  <i class="ri-book-3-line"></i> E-Book
+                  <i class="ri-book-3-line"></i> PBook
                </a>
 
                <p class="footer__description">
                   Find and explore the best <br>
-                  eBooks from all your <br>
+                  picture books from all your <br>
                   favorite writers.
                </p>
             </div>
@@ -1003,15 +963,15 @@
                   <ul class="footer__links">
                      <li>
                         <address class="footer__info">
-                           Av. Hacienda <br>
-                           Lima 4321, Perú 
+                           National Taiwan <br>
+                           University
                         </address>
                      </li>
 
                      <li>
                         <address class="footer__info">
-                           e.book@email.com <br>
-                           0987-654-321
+                           p.book@email.com <br>
+                           0912-121-121
                         </address>
                      </li>
                   </ul>
@@ -1038,7 +998,7 @@
          </div>
 
          <span class="footer__copy">
-            &#169; All Rights Reserved By Bedimcode
+            &#169; All Rights Reserved By Pbook
          </span>
       </footer>
 
