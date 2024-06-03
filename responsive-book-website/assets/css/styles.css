@@ -401,16 +401,9 @@ body.dark-theme {
   display: none;
 }
 
-.success-banner {
-  position: fixed;
-  top: 0;
+.logout__button {
   width: 100%;
-  background-color: green;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 20px;
-  z-index: 1000;
+  cursor: pointer;
 }
 
 /*=============== HOME ===============*/
@@ -580,6 +573,18 @@ body.dark-theme {
 
 .featured__card:hover .featured__actions {
   right: 1.5rem;
+}
+
+.featured__card {
+  width: 300px; /* Set the width of the cards */
+  height: 550px; /* Set the height of the cards */
+  margin: 5px; /* Spacing between cards */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds shadow for depth */
+  display: inline-block; /* This makes it so cards sit in a row */
+  position: relative; /* Needed for positioning inner elements absolutely */
+  overflow: hidden; /* Keeps all content within the boundaries of the card */
+  border-radius: 10px; /* Optional: Rounds the corners of the card */
+  background-color: #fff; /* Background color of the card */
 }
 
 /* Swiper class */

@@ -28,10 +28,9 @@ const loginButton = document.getElementById('login-button'),
 
 // Check if the user is already logged in when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-  const userId = localStorage.getItem('userId');
-  console.log('Retrieved userId from localStorage:', userId);
-  if (userId) {
-      userGreeting.textContent = `Hi, ${userId}!`;
+  const username = localStorage.getItem('username');
+  if (username) {
+      userGreeting.textContent = `Hi, ${username}!`;
       loginButton.style.display = 'none';
       logoutButton.style.display = 'block';
   } else {
@@ -43,9 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // Handle login button click
 loginButton.addEventListener('click', () => {
   // Only show login form if not already logged in
-  const userId = localStorage.getItem('userId');
-  console.log('Retrieved userId from localStorage:', userId);
-  if (!userId) {
+  const username = localStorage.getItem('username');
+  if (!username) {
       loginContent.classList.add('show-login');
   }
 });
@@ -58,7 +56,7 @@ loginClose.addEventListener('click', () => {
 
 // Handle logout button click
 logoutButton.addEventListener('click', function() {
-  localStorage.removeItem('userId'); // Clear login state
+  localStorage.removeItem('username'); // Clear login state
   userGreeting.textContent = ''; // Clear greeting
   logoutButton.style.display = 'none'; // Hide logout button
   loginButton.style.display = 'block'; // Show login button
@@ -84,8 +82,8 @@ loginForm.addEventListener('submit', function(event) {
   .then(data => {
       if (data.success) {
           alert(data.message);
-          localStorage.setItem('userId', data.user_id);
-          userGreeting.textContent = `Hi, ${data.user_id}!`;
+          localStorage.setItem('username', data.username);
+          userGreeting.textContent = `Hi, ${data.username}!`;
           loginContent.classList.remove('show-login');
           logoutButton.style.display = 'block';
           loginButton.style.display = 'none';
@@ -100,16 +98,87 @@ loginForm.addEventListener('submit', function(event) {
   });
 });
 
-
 /*=============== LIKE ===============*/
+
 document.addEventListener('DOMContentLoaded', function() {
   const headerLikeButton = document.getElementById('like-button'),
         likedBooksSection = document.getElementById('liked-books'),
         featuredHeartButtons = document.querySelectorAll('.featured .heart-button'),
+        likedBooksContainer = document.querySelector('.liked__container'),
         loginContent = document.getElementById('login-content');
 
   function showLoginModal() {
     loginContent.classList.add('show-login');
+  }
+
+  function toggleLikeButton(button) {
+    const bookId = button.getAttribute('data-book-id');
+    const heartIcon = button.querySelector('i');
+    const isLiked = heartIcon.classList.contains('ri-heart-fill'); // Corrected condition
+    const userId = localStorage.getItem('userId');
+  
+    if (isLiked) {
+      fetch(`/unlike`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId, bookId })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          document.querySelectorAll(`.heart-button[data-book-id="${bookId}"] i`).forEach(icon => {
+            icon.classList.remove('ri-heart-fill');
+            icon.classList.add('ri-heart-line');
+          });
+          removeBookFromLikedSection(bookId);
+        }
+      });
+    } else {
+      fetch('/like', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId, bookId })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          document.querySelectorAll(`.heart-button[data-book-id="${bookId}"] i`).forEach(icon => {
+            icon.classList.remove('ri-heart-line');
+            icon.classList.add('ri-heart-fill');
+          });
+          addBookToLikedSection(bookId);
+        }
+      });
+    }
+  }
+  
+  function addBookToLikedSection(bookId) {
+    const existingLikedBook = likedBooksContainer.querySelector(`.featured__card[data-book-id="${bookId}"]`);
+    if (!existingLikedBook) {
+        const book = document.querySelector(`.featured__card[data-book-id="${bookId}"]`);
+        if (book) {
+            const likedBook = book.cloneNode(true);
+            likedBooksContainer.appendChild(likedBook);
+        }
+    }
+  }
+
+  
+  function removeBookFromLikedSection(bookId) {
+    const likedBook = likedBooksContainer.querySelector(`.liked__container .featured__card[data-book-id="${bookId}"]`);
+    if (likedBook) {
+        likedBooksContainer.removeChild(likedBook);
+    }
+    document.querySelectorAll(`.heart-button[data-book-id="${bookId}"] i`).forEach(icon => {
+        if (icon.classList.contains('ri-heart-fill')) {
+            icon.classList.remove('ri-heart-fill');
+            icon.classList.add('ri-heart-line');
+        }
+    });
   }
 
   headerLikeButton.addEventListener('click', () => {
@@ -142,141 +211,90 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /*=============== FEATURED BOOK ===============*/
 document.addEventListener("DOMContentLoaded", function() {
-  const featuredContainer = document.querySelector('.featured__swiper .swiper-wrapper');
-  const modal = document.createElement('div');
-  modal.classList.add('modal');
-  document.body.appendChild(modal);
-
-  // Function to toggle the like status of a book
-  function toggleLikeButton(button) {
-    const bookId = button.getAttribute('data-book-id');
-    const heartIcon = button.querySelector('i');
-    const isLiked = heartIcon.classList.contains('ri-heart-fill'); // Corrected condition
-    const userId = localStorage.getItem('userId');
-
-    console.log('Retrieved userId from localStorage:', userId);
-    console.log('Book ID:', bookId);
-
-
-    if (isLiked) {
-      fetch(`/unlike`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ userId, bookId })
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 'success') {
-          document.querySelectorAll(`.heart-button[data-book-id="${bookId}"] i`).forEach(icon => {
-            icon.classList.remove('ri-heart-fill');
-            icon.classList.add('ri-heart-line');
-          });
-          removeBookFromLikedSection(bookId);
-        }
-      });
-    } else {
-      console.log('Sending request with userId and bookId:', userId, bookId);
-      fetch('/like', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ userId, bookId })
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 'success') {
-          document.querySelectorAll(`.heart-button[data-book-id="${bookId}"] i`).forEach(icon => {
-            icon.classList.remove('ri-heart-line');
-            icon.classList.add('ri-heart-fill');
-          });
-          addBookToLikedSection(bookId);
-        }
-      });
-    }
-  }
-  
-  
-  function addBookToLikedSection(bookId) {
-    const likedBooksContainer = document.getElementById('liked-books-container');
-    const existingLikedBook = likedBooksContainer.querySelector(`.featured__card[data-book-id="${bookId}"]`);
-    if (!existingLikedBook) {
-        const book = document.querySelector(`.featured__card[data-book-id="${bookId}"]`);
-        if (book) {
-            const likedBook = book.cloneNode(true); // Clone the book card
-            likedBooksContainer.appendChild(likedBook); // Append to the liked books container
-        }
-    }
-}
-
-  function removeBookFromLikedSection(bookId) {
-    const likedBooksContainer = document.getElementById('liked-books-container');
-    const likedBook = likedBooksContainer.querySelector(`.featured__card[data-book-id="${bookId}"]`);
-    if (likedBook) {
-        likedBooksContainer.removeChild(likedBook);
-    }
-  }
   // Fetching the featured books
   fetch('/books')
-    .then(response => response.json())
-    .then(books => {
-      books.forEach(book => {
-        const bookHTML = `
-          <article class="featured__card swiper-slide" data-book-id="${book.book_id}">
-            <img src="${book.Picture}" alt="image" class="featured__img">
-            <h2 class="featured__title">${book.Title}</h2>
-            <div class="featured__prices">
-              <span class="author_block">${book.Author}</span>
-            </div>
-            <button class="button see-more-button" data-book-id="${book.book_id}">See more</button>
-            <div class="featured__actions">
-              <button class="heart-button" data-book-id="${book.book_id}"><i class="ri-heart-line"></i></button>
-              <button class="zoom-button" data-book-id="${book.book_id}"><i class="ri-eye-line"></i></button>
-            </div>
-          </article>
-        `;
-        featuredContainer.innerHTML += bookHTML;
-      });
+      .then(response => response.json())
+      .then(books => {
+          const featuredContainer = document.querySelector('.featured__swiper .swiper-wrapper');
+          featuredContainer.addEventListener('click',function(event)){
+            const heartButton 
+          books.forEach(book => {
+              const bookHTML = `
+                  <article class="featured__card swiper-slide" data-book-id="${book.Book_id}">
+                      <img src="${book.Picture}" alt="image" class="featured__img">
 
-      // Event listeners for dynamic content
-      featuredContainer.addEventListener('click', function(event) {
-        const button = event.target.closest('button');
-        if (button) {
-          switch (button.className) {
-            case 'heart-button':
-              console.log('Heart button clicked');
-              toggleLikeButton(button);
-              break;
-            case 'see-more-button':
-              window.location.href = `page-book-details.html?id=${bookId}`;
-              break;
-            case 'zoom-button':
-              const imgSrc = button.closest('.featured__card').querySelector('.featured__img').src;
-              showModal(imgSrc);
-              break;
-          }
-        }
-      });
+                      <h2 class="featured__title">${book.Title}</h2>
+                      <div class="featured__prices">
+                          <span class="author_block">${book.Author}</span>
+                      </div>
 
+                      <button class="button" id="seeMoreButton" data-book-id="${book.Book_id}">See more</button>
 
-
-      // Function to show modal with image
-      function showModal(imgSrc) {
-        modal.innerHTML = `<img src="${imgSrc}" alt="Book Image" style="max-width:100%; max-height:100%;">`;
-        modal.style.display = 'block';
-      }
-
-      // Close modal on click outside the image
-      modal.addEventListener('click', function(event) {
-        if (event.target === modal) {
-          modal.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('Error loading the books:', error));
+                      <div class="featured__actions">
+                          <button class="heart-button" data-book-id="${book.Book_id}"><i class="ri-heart-line"></i></button>
+                          <button class="zoom-button"><i class="ri-eye-line"></i></button>
+                      </div>
+                  </article>
+              `;
+              featuredContainer.innerHTML += bookHTML;
+          });
+      })
+      .catch(error => console.error('Error loading the books:', error));
 });
+
+/*=============== SEE MORE ===============*/
+document.getElementById('seeMoreButton').addEventListener('click', function() {
+  var bookId = this.getAttribute('data-book-id');
+  window.location.href = 'page-book-details.html?id=' + bookId;
+});
+document.addEventListener('DOMContentLoaded', function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var bookId = urlParams.get('id');
+
+  if (bookId) {
+      fetch('http://localhost:3000/book/' + bookId)
+          .then(response => response.json())
+          .then(data => {
+              if (data.message) {
+                  console.error(data.message);
+              } else {
+                  document.getElementById('bookTitle').innerText = data.title;
+                  document.getElementById('bookAuthor').innerText = 'Author: ' + data.author;
+                  document.getElementById('bookDescription').innerText = data.description;
+                  document.getElementById('bookImage').src = data.image;
+              }
+          })
+          .catch(error => console.error('Error fetching book details:', error));
+  } else {
+      console.error('No book ID provided in URL');
+  }
+});
+
+/*=============== SEE MORE ===============*/
+ // Eye button zoom
+ const zoom-button = document.querySelectorAll('.zoom-button');
+ const modal = document.createElement('div');
+ modal.classList.add('modal');
+ document.body.appendChild(modal);
+
+ zoomButtons.forEach(button => {
+     button.addEventListener('click', function () {
+         const imgSrc = this.closest('.featured__card').querySelector('.featured__img').src;
+         const modalImg = document.createElement('img');
+         modalImg.src = imgSrc;
+         modal.innerHTML = ''; // 清空之前的内容
+         modal.appendChild(modalImg);
+         modal.classList.add('active');
+     });
+ });
+
+ // Close modal on click outside the image
+ modal.addEventListener('click', function (e) {
+     if (e.target === modal) {
+         modal.classList.remove('active');
+     }
+ });
+
 
 /*=============== ADD SHADOW HEADER ===============*/
 const shadowHeader = () =>{
