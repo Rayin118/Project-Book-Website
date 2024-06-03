@@ -876,7 +876,7 @@ body.dark-theme {
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 60px;
+  padding-top: 100px; /* Add more space at the top */
   left: 0;
   top: 0;
   width: 100%;
