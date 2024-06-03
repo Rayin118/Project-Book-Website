@@ -29,9 +29,10 @@ const loginButton = document.getElementById('login-button'),
 // Check if the user is already logged in when the page loads
 document.addEventListener('DOMContentLoaded', function() {
   const userId = localStorage.getItem('userId');
+  const username = localStorage.getItem('username');
   console.log('Retrieved userId from localStorage:', userId);
   if (userId) {
-      userGreeting.textContent = `Hi, ${userId}!`;
+      userGreeting.textContent = `Hi, ${username}!`;
       loginButton.style.display = 'none';
       logoutButton.style.display = 'block';
   } else {
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
 loginButton.addEventListener('click', () => {
   // Only show login form if not already logged in
   const userId = localStorage.getItem('userId');
+  const username = localStorage.getItem('username');
   console.log('Retrieved userId from localStorage:', userId);
   if (!userId) {
       loginContent.classList.add('show-login');
@@ -59,6 +61,7 @@ loginClose.addEventListener('click', () => {
 // Handle logout button click
 logoutButton.addEventListener('click', function() {
   localStorage.removeItem('userId'); // Clear login state
+  localStorage.removeItem('username'); 
   userGreeting.textContent = ''; // Clear greeting
   logoutButton.style.display = 'none'; // Hide logout button
   loginButton.style.display = 'block'; // Show login button
@@ -85,7 +88,8 @@ loginForm.addEventListener('submit', function(event) {
       if (data.success) {
           alert(data.message);
           localStorage.setItem('userId', data.user_id);
-          userGreeting.textContent = `Hi, ${data.user_id}!`;
+          localStorage.setItem('username', data.username); 
+          userGreeting.textContent = `Hi, ${data.username}!`;
           loginContent.classList.remove('show-login');
           logoutButton.style.display = 'block';
           loginButton.style.display = 'none';
@@ -143,7 +147,13 @@ document.addEventListener('DOMContentLoaded', function() {
 /*=============== FEATURED BOOK ===============*/
 document.addEventListener("DOMContentLoaded", function() {
   const featuredContainer = document.querySelector('.featured__swiper .swiper-wrapper');
-  const modal = document.createElement('div');
+  const modal = document.getElementById('book-details-modal');
+  const closeModal = document.getElementById('close-modal');
+  const bookTitle = document.getElementById('book-title');
+  const bookAuthor = document.getElementById('book-author');
+  const bookDescription = document.getElementById('book-summary');
+  const bookGenre = document.getElementById('book-genre');
+  const bookImage = document.getElementById('book-image');
   modal.classList.add('modal');
   document.body.appendChild(modal);
 
@@ -153,10 +163,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const heartIcon = button.querySelector('i');
     const isLiked = heartIcon.classList.contains('ri-heart-fill'); // Corrected condition
     const userId = localStorage.getItem('userId');
-
-    console.log('Retrieved userId from localStorage:', userId);
-    console.log('Book ID:', bookId);
-
 
     if (isLiked) {
       fetch(`/unlike`, {
@@ -177,7 +183,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
     } else {
-      console.log('Sending request with userId and bookId:', userId, bookId);
       fetch('/like', {
         method: 'POST',
         headers: {
@@ -197,8 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
   }
-  
-  
+
   function addBookToLikedSection(bookId) {
     const likedBooksContainer = document.getElementById('liked-books-container');
     const existingLikedBook = likedBooksContainer.querySelector(`.featured__card[data-book-id="${bookId}"]`);
@@ -209,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
             likedBooksContainer.appendChild(likedBook); // Append to the liked books container
         }
     }
-}
+  }
 
   function removeBookFromLikedSection(bookId) {
     const likedBooksContainer = document.getElementById('liked-books-container');
@@ -218,6 +222,21 @@ document.addEventListener("DOMContentLoaded", function() {
         likedBooksContainer.removeChild(likedBook);
     }
   }
+
+  function showModal(bookId) {
+    fetch(`/book/${bookId}`)
+        .then(response => response.json())
+        .then(data => {
+            bookTitle.textContent = data.Title;
+            bookAuthor.textContent = data.Author;
+            bookDescription.textContent = data.Summary;
+            bookGenre.textContent = data.Genre;
+            bookImage.src = data.Picture;
+            modal.style.display = "block";
+        })
+        .catch(error => console.error('Error:', error));
+  }
+
   // Fetching the featured books
   fetch('/books')
     .then(response => response.json())
@@ -244,39 +263,30 @@ document.addEventListener("DOMContentLoaded", function() {
       featuredContainer.addEventListener('click', function(event) {
         const button = event.target.closest('button');
         if (button) {
-          switch (button.className) {
-            case 'heart-button':
-              console.log('Heart button clicked');
-              toggleLikeButton(button);
-              break;
-            case 'see-more-button':
-              window.location.href = `page-book-details.html?id=${bookId}`;
-              break;
-            case 'zoom-button':
-              const imgSrc = button.closest('.featured__card').querySelector('.featured__img').src;
-              showModal(imgSrc);
-              break;
+          const bookId = button.getAttribute('data-book-id');
+          if (button.classList.contains('heart-button')) {
+            toggleLikeButton(button);
+          } else if (button.classList.contains('see-more-button')) {
+            showModal(bookId);
+          } else if (button.classList.contains('zoom-button')) {
+            showModal(bookId);
           }
         }
       });
 
+      closeModal.addEventListener('click', function() {
+          modal.style.display = "none";
+      });
 
-
-      // Function to show modal with image
-      function showModal(imgSrc) {
-        modal.innerHTML = `<img src="${imgSrc}" alt="Book Image" style="max-width:100%; max-height:100%;">`;
-        modal.style.display = 'block';
-      }
-
-      // Close modal on click outside the image
-      modal.addEventListener('click', function(event) {
-        if (event.target === modal) {
-          modal.style.display = 'none';
-        }
+      window.addEventListener('click', function(event) {
+          if (event.target === modal) {
+              modal.style.display = "none";
+          }
       });
     })
     .catch(error => console.error('Error loading the books:', error));
 });
+
 
 /*=============== ADD SHADOW HEADER ===============*/
 const shadowHeader = () =>{

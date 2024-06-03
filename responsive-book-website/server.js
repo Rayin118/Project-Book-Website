@@ -1,5 +1,6 @@
+require('dotenv').config();
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
@@ -8,12 +9,13 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'assets')));
 
+// create an .env file to input the values of DB_HOST, DB_USER, DB_PASS, DB_NAME
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root', // Replace with your MySQL username
-    password: 'password', // Replace with your MySQL password
-    database: 'book_club'
-}); 
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
+});
 
 db.connect(err => {
     if (err) throw err;
@@ -40,8 +42,9 @@ app.post('/login', (req, res) => {
             // User exists, check password
             const user = results[0];
             if (user.password === password) {
+                const username = email.split('@')[0];
                 console.log('Login successful'); // Debug log
-                res.json({ success: true, user_id: user.user_id, message: "Log in successfully." });
+                res.json({ success: true, user_id: user.user_id, username, message: "Log in successfully." });
             } else {
                 console.log('Incorrect password'); // Debug log
                 res.status(401).json({ success: false, message: "Incorrect email or password." });
@@ -49,12 +52,13 @@ app.post('/login', (req, res) => {
         } else {
             // User doesn't exist, create new user
             console.log('Creating new user'); // Debug log
+            const username = email.split('@')[0];
             db.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, password], (err, results) => {
                 if (err) {
                     console.error('Database error:', err);
                     return res.status(500).send(err);
                 }
-                res.json({ success: true, user_id: results.insertId, message: "Log in successfully." });
+                res.json({ success: true, user_id: results.insertId, username, message: "Log in successfully." });
             });
         }
     });
@@ -123,33 +127,16 @@ app.post('/unlike', (req, res) => {
 // Fetch book details
 app.get('/book/:id', (req, res) => {
     const bookId = req.params.id;
-    db.query('SELECT title, author, description FROM books WHERE id = ?', [bookId], (err, results) => {
-        if (err) throw err;
-        if (results.length > 0) {
-            const bookDetails = results[0];
-            bookDetails.image = `img/book-${bookId}.png`;
-            res.json(bookDetails);
-        } else {
-            res.status(404).json({ message: 'Book not found' });
-        }
+    db.query('SELECT Title, Author, Summary, Genre, Picture FROM books WHERE book_id = ?', [bookId], (err, results) => {
+      if (err) throw err;
+      if (results.length > 0) {
+        res.json(results[0]);
+      } else {
+        res.status(404).json({ message: 'Book not found' });
+      }
     });
 });
-
-// Route to get book details
-app.get('/api/book/:id', (req, res) => {
-    const bookId = req.params.id;
-    db.query('SELECT title, author, description, image_url FROM books WHERE book_id = ?', [bookId], (err, results) => { // Use book_id
-        if (err) throw err;
-        if (results.length > 0) {
-            const bookDetails = results[0];
-            res.json(bookDetails);
-        } else {
-            res.status(404).json({ message: 'Book not found' });
-        }
-    });
-});
-
-
+  
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
