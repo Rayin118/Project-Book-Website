@@ -250,7 +250,7 @@
          <!-- Book Details Modal -->
          <div id="book-details-modal" class="modal">
             <div class="modal-content">
-              <span class="close" id="close-modal">&times;</span>
+              <span class="close" id="close-book-details">&times;</span>
               <div class="modal-body">
                 <img id="book-image" src="" alt="Book Image" />
                 <div class="book-details">
@@ -263,430 +263,40 @@
             </div>
           </div>
 
+           <!-- ZOOM Modal -->
+         <div id="zoom-modal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="close-zoom">&times;</span>
+              <div class="zoom">
+                <img id="zoom" />
+              </div>
+            </div>
+          </div>
+
+
          <!--==================== NEW BOOKS ====================-->
          <section class="new section" id="new">
-            <h2 class="section__title">
-               New Books
-            </h2>
-
+            <h2 class="section__title">New Books</h2>
             <div class="new__container container">
-               <div class="new__swiper swiper">
-                  <div class="swiper-wrapper">
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-1.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars"> -->
-                              <!-- <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i> -->
-                           <!-- </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-2.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-3.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-4.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-5.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-6.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-<!--    
-                           <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-7.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-8.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-<!--    
-                           <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-9.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-10.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-                  </div>
-               </div>
-
-               <div class="new__swiper swiper">
-                  <div class="swiper-wrapper">
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-10.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-9.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-8.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-7.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-6.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-5.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-4.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-3.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-2.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-
-                     <a href="#" class="new__card swiper-slide">
-                        <img src="img/book-1.png" alt="image" class="new__img">
-
-                        <div>
-                           <h2 class="new__title">New Book</h2>
-                           <div class="new__book">
-                              <span class="new__author">author_name</span>
-                              <!-- <span class="new__price">$14.99</span> -->
-                           </div>
-   
-                           <!-- <div class="new__stars">
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-fill"></i>
-                              <i class="ri-star-half-fill"></i>
-                           </div> -->
-                        </div>
-                     </a>
-                  </div>
-               </div>
+              <div class="new__swiper swiper">
+                <div class="swiper-wrapper">
+                  <!-- New books will be dynamically inserted here -->
+                </div>
+              </div>
             </div>
-         </section>
+          </section>
 
-         <!--==================== LIKED BOOKS ====================-->
+           <!--==================== LIKED BOOKS ====================-->
          <section class="liked section" id="liked-books">
-            <h2 class="section__title">Liked Books</h2>
+            <h2 class="section__title">Favorites</h2>
             <div id="liked-books-container">
-               <!-- List of liked books will be dynamically added here -->
+                <article class="like__card liked-book" data-book-id="${book.id}">
+                    </article>
             </div>
          </section>
+
+        
+
 
          <!--==================== JOIN ====================-->
          <section class="join section">

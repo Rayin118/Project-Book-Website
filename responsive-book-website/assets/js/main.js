@@ -148,7 +148,9 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", function() {
   const featuredContainer = document.querySelector('.featured__swiper .swiper-wrapper');
   const modal = document.getElementById('book-details-modal');
-  const closeModal = document.getElementById('close-modal');
+  const modal2 = document.getElementById('zoom-modal');
+  const closeBookDetails = document.getElementById('close-book-details');
+  const closeZoom = document.getElementById('close-zoom');
   const bookTitle = document.getElementById('book-title');
   const bookAuthor = document.getElementById('book-author');
   const bookDescription = document.getElementById('book-summary');
@@ -156,6 +158,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const bookImage = document.getElementById('book-image');
   modal.classList.add('modal');
   document.body.appendChild(modal);
+  modal2.classList.add('modal2');
+  document.body.appendChild(modal2);
 
   // Function to toggle the like status of a book
   function toggleLikeButton(button) {
@@ -237,6 +241,19 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error('Error:', error));
   }
 
+  function showModal2(imgSrc) {
+    modal2.innerHTML = `<img src="${imgSrc}" alt="Book Image" style="max-width:80%; max-height:80%; position: absolute; top: 15%; left: 35%; ">`;
+    modal2.style.display = 'block';
+  }
+
+  closeBookDetails.addEventListener('click', function() {
+    modal.style.display = "none";
+  });
+  
+  closeZoom.addEventListener('click', function() {
+    modal2.style.display = "none";
+  });
+
   // Fetching the featured books
   fetch('/books')
     .then(response => response.json())
@@ -269,22 +286,60 @@ document.addEventListener("DOMContentLoaded", function() {
           } else if (button.classList.contains('see-more-button')) {
             showModal(bookId);
           } else if (button.classList.contains('zoom-button')) {
-            showModal(bookId);
+            const imgSrc = button.closest('.featured__card').querySelector('.featured__img').src;
+              showModal2(imgSrc);
           }
         }
       });
 
-      closeModal.addEventListener('click', function() {
+      modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
           modal.style.display = "none";
+        }
+      });
+      
+      modal2.addEventListener('click', function(event) {
+        if (event.target === modal2) {
+          modal2.style.display = "none";
+        }
       });
 
       window.addEventListener('click', function(event) {
-          if (event.target === modal) {
-              modal.style.display = "none";
-          }
+        if (event.target === modal) {
+          modal.style.display = "none";
+        } else if (event.target === modal2) {
+          modal2.style.display = "none";
+        }
       });
     })
     .catch(error => console.error('Error loading the books:', error));
+});
+
+/*=============== NEW BOOKS ===============*/
+document.addEventListener("DOMContentLoaded", function () {
+  const newBooksContainer = document.querySelector('.new__swiper .swiper-wrapper');
+
+  newBooksContainer.innerHTML = ''
+
+
+  // Fetch new books
+  fetch('/new-books')
+    .then(response => response.json())
+    .then(books => {
+      books.forEach(book => {
+        const formattedDate = new Date(book.Date).toLocaleDateString('en-US');
+        const bookHTML = `
+          <article class="new__card swiper-slide" data-book-id="${book.book_id}">
+            <img src="${book.Picture}" alt="image" class="new__img">
+            <h2 class="new__title">${book.Title}</h2>
+            <div class="new__author">${book.Author}</div>
+            <span class="new__date">Date: ${formattedDate}</span>
+          </article>
+        `;
+        newBooksContainer.innerHTML += bookHTML;
+      });
+    })
+    .catch(error => console.error('Error loading the new books:', error));
 });
 
 
@@ -442,49 +497,3 @@ sr.reveal(`.home__images`, {delay: 600})
 sr.reveal(`.services__card`, {interval: 100})
 sr.reveal(`.discount__data`, {origin: 'left'})
 sr.reveal(`.discount__images`, {origin: 'right'})
-
-// /*=============== event listener for heart button ===============*/
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   // Heart button toggle
-//   const heartButtons = document.querySelectorAll('.heart-button');
-
-//   heartButtons.forEach(button => {
-//       button.addEventListener('click', function () {
-//           const icon = this.querySelector('i');
-//           if (icon.classList.contains('ri-heart-3-line')) {
-//               icon.classList.remove('ri-heart-3-line');
-//               icon.classList.add('ri-heart-fill');
-//           } else {
-//               icon.classList.remove('ri-heart-fill');
-//               icon.classList.add('ri-heart-3-line');
-//           }
-//       });
-//   });
-
-  // Eye button zoom
-  const zoomButtons = document.querySelectorAll('.zoom-button');
-  const modal = document.createElement('div');
-  modal.classList.add('modal');
-  document.body.appendChild(modal);
-
-  zoomButtons.forEach(button => {
-      button.addEventListener('click', function () {
-          const imgSrc = this.closest('.featured__card').querySelector('.featured__img').src;
-          const modalImg = document.createElement('img');
-          modalImg.src = imgSrc;
-          modal.innerHTML = ''; // 清空之前的内容
-          modal.appendChild(modalImg);
-          modal.classList.add('active');
-      });
-  });
-
-  // Close modal on click outside the image
-  modal.addEventListener('click', function (e) {
-      if (e.target === modal) {
-          modal.classList.remove('active');
-      }
-  });
-// });
-
-

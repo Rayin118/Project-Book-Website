@@ -83,6 +83,18 @@ app.get('/books', (req, res) => {
         res.json(results);
     });
 });
+// Fetch new books
+app.get('/new-books', (req, res) => {
+    db.query('SELECT * FROM books ORDER BY date DESC LIMIT 6', (err, results) => {
+      if (err) {
+        console.error('Error fetching new books:', err);
+        return res.status(500).json({ message: 'Error fetching new books' });
+      }
+  
+      console.log('Fetched new books:', results); // Log the fetched results
+      res.json(results);
+    });
+  });
 
 // Like a book
 app.post('/like', (req, res) => {
@@ -101,15 +113,6 @@ app.post('/like', (req, res) => {
 });
 
 
-// Fetch liked books 
-app.get('/liked-books/:userId', (req, res) => {
-    const { userId } = req.params;
-    db.query('SELECT b.* FROM books b JOIN likes l ON b.id = l.book_id WHERE l.user_id = ?', [userId], (err, results) => {
-        if (err) throw err;
-        res.json(results);
-    });
-});
-
 // Unlike a book
 app.post('/unlike', (req, res) => {
     const { userId, bookId } = req.body;
@@ -121,6 +124,20 @@ app.post('/unlike', (req, res) => {
         } else {
             res.json({ status: 'success' });
         }
+    });
+});
+
+// Fetch liked books 
+app.get('/liked-books/:userId', (req, res) => {
+    const { userId } = req.params;
+    db.query('SELECT b.* FROM books b JOIN likes l ON b.book_id = l.book_id WHERE l.user_id = ?', [userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching new books:', err);
+            return res.status(500).json({ message: 'Error fetching like books' });
+          }
+      
+          console.log('Fetched like books:', results); // Log the fetched results
+          res.json(results);
     });
 });
 
