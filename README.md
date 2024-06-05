@@ -14,10 +14,10 @@ Step 2.
 
 Below is the request of environment.
 
-1. # installs nvm (Node Version Manager)
+1. installs nvm (Node Version Manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
-2. # download and install Node.js
+2. download and install Node.js
 nvm install 22
 
 3. pip install cors
